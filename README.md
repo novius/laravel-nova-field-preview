@@ -4,12 +4,11 @@
 
 ## Introduction
 
-This package allows you to manage Laravel Models which user [Laravel Publishable](https://github.com/novius/laravel-publishable) in [Laravel Nova](https://nova.laravel.com/).
+This package allows you to add [Laravel Nova](https://nova.laravel.com/) field to open the front preview url of a ressource.
 
 ## Requirements
 
 * Laravel Nova >= 4.0
-* Laravel Publishable >= 0.1
 * Laravel >= 8.0
 
 ## Installation
@@ -17,62 +16,25 @@ This package allows you to manage Laravel Models which user [Laravel Publishable
 You can install the package via composer:
 
 ```bash
-composer require novius/laravel-nova-publishable
+composer require novius/laravel-nova-field-preview
 ```
 
-Add `Publishable` trait on your Nova Resource:
+Add `OpenPreview` field on your Nova Resource:
 
 ```php
 use Laravel\Nova\Resource;
-use Novius\LaravelNovaPublishable\Nova\Traits\Publishable;
+use Novius\LaravelNovaFieldPreview\Nova\Fields\OpenPreview;
 
 class Post extends Resource
 {
-    use Publishable;
-```
-
-Then you can insert Publishable fields using this method:
-
-```php
-    protected function fieldsForIndex(): array
-    {
-        return [
-            ...$this->publishableFields(),
-        ];
-    }
-```
-
-If you want to separate field insertions for Forms and Display:
-
-```php
     protected function fields(): array
     {
         return [
-            // Some others fields
-            
-            ...$this->publishableDisplayFields(),
-
-            // Some others fields
-            
-            ...$this->publishableFormFields(),
-        ];
-    }
-```
-
-You can also add the Publication Status Filter:
-
-```php
-use Laravel\Nova\Resource;
-use Novius\LaravelNovaPublishable\Nova\Filters\PublicationStatus;
-
-class Post extends Resource
-{
-    public function filters(NovaRequest $request): array
-    {
-        return [
-            new PublicationStatus(),
-        ];
-    }
+            OpenPreview::make('Preview link')
+            ->previewUrl(function() {
+                // Return here the preview url of the resource
+                return $this->resource->previewUrl();
+            }),
 ```
 
 ## Lang files
@@ -80,7 +42,7 @@ class Post extends Resource
 If you want to customize the lang files, you can publish them with:
 
 ```bash
-php artisan vendor:publish --provider="Novius\LaravelNovaPublishable\LaravelNovaPublishableServiceProvider" --tag="lang"
+php artisan vendor:publish --provider="Novius\LaravelNovaFieldPreview\LaravelNovaFieldPreviewServiceProvider" --tag="lang"
 ```
 
 ## Lint

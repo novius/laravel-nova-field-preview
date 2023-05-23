@@ -7,7 +7,7 @@ use Laravel\Nova\Fields\Text;
 
 class OpenPreview extends Text
 {
-    public ?Closure $previewUrlCallback;
+    public ?Closure $previewUrlCallback = null;
 
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
     {
