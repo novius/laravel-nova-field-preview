@@ -1,0 +1,56 @@
+{
+    "name": "novius/laravel-nova-field-preview",
+    "description": "A Laravel Nova field for open front preview",
+    "keywords": ["laravel", "nova", "preview", "url"],
+    "support": {
+        "issues": "https://github.com/novius/laravel-nova-field-preview/issues",
+        "source": "https://github.com/novius/laravel-nova-field-preview"
+    },
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Novius Agency",
+            "email": "team-developpeurs@novius.com",
+            "homepage": "https://www.novius.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^8.83.4|^9.3.1|^10.0",
+        "laravel/nova": "^4.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Novius\\LaravelNovaFieldPreview\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Novius\\LaravelNovaFieldPreview\\LaravelNovaFieldPreviewServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "cs-fix": [
+            "./vendor/bin/pint -v"
+        ],
+        "lint": [
+            "@composer fmt -- --test"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
