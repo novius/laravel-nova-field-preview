@@ -19,7 +19,23 @@ You can install the package via composer:
 composer require novius/laravel-nova-field-preview
 ```
 
-Add `OpenPreview` field on your Nova Resource:
+Add `OpenPreview` field on your Nova Resource.
+
+If the resource have a `previewUrl` method :
+
+```php
+use Laravel\Nova\Resource;
+use Novius\LaravelNovaFieldPreview\Nova\Fields\OpenPreview;
+
+class Post extends Resource
+{
+    protected function fields(): array
+    {
+        return [
+            OpenPreview::make('Preview link'),
+```
+
+Otherwise you must specify the preview url :
 
 ```php
 use Laravel\Nova\Resource;
@@ -33,7 +49,7 @@ class Post extends Resource
             OpenPreview::make('Preview link')
             ->previewUrl(function() {
                 // Return here the preview url of the resource
-                return $this->resource->previewUrl();
+                return $this->resource->url().'.?preview=1';
             }),
 ```
 

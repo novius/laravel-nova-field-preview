@@ -3,10 +3,16 @@
 namespace Novius\LaravelNovaFieldPreview\Nova\Fields;
 
 use Closure;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Fields\SupportsDependentFields;
+use Laravel\Nova\Fields\Unfillable;
 
-class OpenPreview extends Text
+class OpenPreview extends Field implements Unfillable
 {
+    use SupportsDependentFields;
+
+    public $component = 'text-field';
+
     public ?Closure $previewUrlCallback = null;
 
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
@@ -29,7 +35,7 @@ class OpenPreview extends Text
             );
         }, $resolveCallback);
 
-        $this->asHtml();
+        $this->withMeta(['asHtml' => true]);
     }
 
     public function previewUrl(callable $previewUrl): OpenPreview
