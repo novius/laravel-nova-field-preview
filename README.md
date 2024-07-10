@@ -9,7 +9,12 @@ This package allows you to add [Laravel Nova](https://nova.laravel.com/) field t
 ## Requirements
 
 * Laravel Nova >= 4.0
-* Laravel >= 8.0
+* Laravel >= 10.0
+* Laravel >= 8.2
+
+> **NOTE**: These instructions are for Laravel >= 10.0 and PHP >= 8.2 If you are using prior version, please
+> see the [previous version's docs](https://github.com/novius/laravel-nova-field-preview/tree/1.x).
+
 
 ## Installation
 

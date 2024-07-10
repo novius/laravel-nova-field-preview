@@ -15,7 +15,7 @@ class OpenPreview extends Field implements Unfillable
 
     public ?Closure $previewUrlCallback = null;
 
-    public function __construct($name, $attribute = null, callable $resolveCallback = null)
+    public function __construct($name, $attribute = null, ?callable $resolveCallback = null)
     {
         parent::__construct($name, function () {
             if ($this->previewUrlCallback === null && method_exists($this->resource, 'previewUrl')) {
