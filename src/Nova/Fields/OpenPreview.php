@@ -15,6 +15,7 @@ class OpenPreview extends Field implements Unfillable
 
     public ?Closure $previewUrlCallback = null;
 
+    /** @phpstan-ignore constructor.unusedParameter */
     public function __construct($name, $attribute = null, ?callable $resolveCallback = null)
     {
         parent::__construct($name, function () {
